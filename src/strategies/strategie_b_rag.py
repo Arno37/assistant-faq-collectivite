@@ -32,23 +32,28 @@ client = obtenir_client_hf()
 def interroger_rag(question):
     print(f"\nRecherche pour : {question}")
     
-    # A. Recherche du document le plus pertinent
+    # A. Recherche des 3 documents les plus pertinents
     query_embedding = embedder.encode(question, convert_to_tensor=True)
-    hits = util.semantic_search(query_embedding, corpus_embeddings, top_k=1)
+    hits = util.semantic_search(query_embedding, corpus_embeddings, top_k=3)
     
-    # On récupère le meilleur résultat
-    meilleur_hit = hits[0][0]  # Premier résultat de la première requête
-    doc_trouve = documents_faq[meilleur_hit['corpus_id']]
-    score = meilleur_hit['score']
+    # Récupérer les 3 meilleurs documents
+    top_docs = [documents_faq[hit['corpus_id']] for hit in hits[0]]
+    scores = [hit['score'] for hit in hits[0]]
     
-    print(f"Document trouvé (Pertinence: {score:.4f}) : {doc_trouve}")
+    print(f"\n📊 Top 3 documents trouvés :")
+    for i, (doc, score) in enumerate(zip(top_docs, scores), 1):
+        print(f"  {i}. Pertinence: {score:.4f} - {doc[:80]}...")
+    
+    # Combiner les 3 documents en un seul contexte
+    contexte_combine = "\n\n".join(top_docs)
     
     # B. Construction de la réponse avec l'IA
     prompt_systeme = f"""
 Tu es un assistant de mairie. Utilise EXCLUSIVEMENT le contexte ci-dessous pour répondre.
 Si la réponse n'est pas dans le contexte, dis "Je ne sais pas".
 
-CONTEXTE : "{doc_trouve}"
+CONTEXTE : 
+{contexte_combine}
 """
     
     messages = [
