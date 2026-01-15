@@ -130,6 +130,48 @@ if __name__ == "__main__":
 
 ---
 
+## 🐳 Utilisation avec Docker
+
+### Prérequis Docker
+
+- **Docker** installé ([Installation](https://docs.docker.com/get-docker/))
+- **Docker Compose** installé (inclus avec Docker Desktop)
+
+### Lancer le projet avec Docker
+
+1. **Créer le fichier `.env`** avec ton token Hugging Face :
+   ```
+   HF_TOKEN=votre_token_ici
+   ```
+
+2. **Construire et lancer le conteneur** :
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Arrêter le conteneur** :
+   ```bash
+   docker-compose down
+   ```
+
+### Commandes Docker utiles
+
+```bash
+# Lancer en arrière-plan
+docker-compose up -d
+
+# Voir les logs
+docker-compose logs -f
+
+# Exécuter une commande dans le conteneur
+docker-compose exec faq-assistant python -m src.strategies.strategie_a_llm_seul
+
+# Reconstruire l'image
+docker-compose build --no-cache
+```
+
+---
+
 ## 📊 Données
 
 ### `faq_base.json`

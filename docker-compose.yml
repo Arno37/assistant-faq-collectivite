@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Service principal : Assistant FAQ
+  faq-assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: assistant-faq
+    environment:
+      # Variables d'environnement (à définir dans .env)
+      - HF_TOKEN=${HF_TOKEN}
+    volumes:
+      # Montage du code source pour le développement
+      - ./src:/app/src
+      - ./data:/app/data
+    ports:
+      # Port pour une future API (optionnel)
+      - "8000:8000"
+    restart: unless-stopped
+    command: python -m src.strategies.strategie_b_rag
+
+  # Service optionnel : Base de données vectorielle (ChromaDB)
+  # Décommenter si tu veux utiliser ChromaDB en production
+  # chromadb:
+  #   image: chromadb/chroma:latest
+  #   container_name: chromadb
+  #   ports:
+  #     - "8001:8000"
+  #   volumes:
+  #     - chroma-data:/chroma/chroma
+  #   restart: unless-stopped
+
+# Volumes persistants
+volumes:
+  chroma-data:

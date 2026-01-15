@@ -1,0 +1,41 @@
+# Fichiers sensibles
+.env
+
+# Environnement virtuel
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Git
+.git/
+.gitignore
+
+# Documentation (déjà générée)
+docs/
+rapports/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Modèles téléchargés (trop lourds)
+models/
+*.safetensors
+*.bin
+
+# Logs
+*.log
+
+# Fichiers de test
+tests/
