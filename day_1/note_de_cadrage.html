@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note de Cadrage - Assistant FAQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --accent-color: #667eea;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: white !important;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .page-container {
+            width: 100%;
+        }
+
+        .print-page {
+            width: 100vw;
+            height: 100vh;
+            padding: 0.5rem;
+            position: relative;
+            background: white;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-page {
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 0.5rem;
+            height: 100%;
+            border: none;
+        }
+
+        .card {
+            background: white !important;
+            color: var(--text-primary);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: none;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .cover-card {
+            padding: 4rem;
+            text-align: center;
+            max-width: 800px;
+            border: none;
+        }
+
+        .cover-card h1 {
+            color: #000;
+        }
+
+        h2.card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        p,
+        li {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        td,
+        th {
+            padding: 0.3rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                background: white;
+            }
+
+            .print-page {
+                height: 100vh;
+                width: 100vw;
+                page-break-after: always;
+            }
+
+            .card {
+                background: white !important;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- COVER -->
+        <div class="print-page cover-page">
+            <div class="card cover-card">
+                <h1>Présentation Stratégique</h1>
+                <h2 style="font-size: 2rem; color: var(--accent-color); border: none;">Assistant FAQ Intelligent</h2>
+                <div style="margin-top: 3rem; font-size: 1.2rem;">
+                    <p style="font-size: 1.2rem;"><strong>Étudiant :</strong> Arnaud Rambourg</p>
+                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 12/01/2026</p>
+                    <p style="font-size: 1.2rem;"><strong>Version :</strong> 2.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: SECTIONS 1-6 -->
+        <div class="print-page">
+            <div class="content-grid">
+                <!-- 1. Contexte -->
+                <div class="card">
+                    <h2 class="card-title">1. Contexte & Enjeux</h2>
+                    <p>La communauté de communes reçoit de nombreuses questions récurrentes (déchets, urbanisme).</p>
+                    <h3>Objectifs</h3>
+                    <ul>
+                        <li>Réduire la charge de demandes et de réponses identiques.</li>
+                        <li>Offrir une réponse 24/7 aux citoyens.</li>
+                        <li>Moderniser l'image de la collectivité.</li>
+                    </ul>
+                </div>
+                <!-- 2. Besoin -->
+                <div class="card">
+                    <h2 class="card-title">2. Analyse du Besoin</h2>
+                    <p><strong>Cible :</strong> Citoyens (tout âge).</p>
+                    <h3>Contraintes</h3>
+                    <ul>
+                        <li>Langage clair</li>
+                        <li>Fiabilité (pas d'erreurs légales).</li>
+                        <li>Souveraineté des données (hébergement local possible).</li>
+                    </ul>
+                </div>
+                <!-- 3. Strat A -->
+                <div class="card">
+                    <h2 class="card-title">3. Stratégie A - LLM Seul</h2>
+                    <p><strong>Principe :</strong> Prompt Système + Meta-Llama-3-8B-Instruct <span
+                            style="color: #f87171; font-weight: bold; margin-left: 0.5rem;">(⚠️ Fiabilité :
+                            Faible)</span></p>
+                    <h3>Points Clés</h3>
+                    <ul>
+                        <li>Répond avec connaissances internes.</li>
+                        <li>"Avantages :" Simplicité, rapide.</li>
+                        <li>"Inconvénients :" Hallucinations élevées.</li>
+                    </ul>
+                </div>
+                <!-- 4. Strat B -->
+                <div class="card">
+                    <h2 class="card-title">4. Stratégie B - RAG</h2>
+                    <p><strong>Principe :</strong> Prompt Système + Embeddings + Meta-Llama-3-8B-Instruct</p>
+                    <h3>Points Clés</h3>
+                    <ul>
+                        <li>Recherche vectorielle puis génération.</li>
+                        <li>"Avantages :" Fiable, sourcé.</li>
+                        <li>"Inconvénients :" Latence, complexité.</li>
+                    </ul>
+                </div>
+                <!-- 5. Strat C -->
+                <div class="card">
+                    <h2 class="card-title">5. Stratégie C - Q&A Extractif</h2>
+                    <p><strong>Principe :</strong> Prompt Système + Recherche Sémantique + roberta-base-squad2</p>
+                    <h3>Processus</h3>
+                    <p>"Copie-colle" le passage exact du document source.</p>
+                </div>
+                <!-- 6. Stack Technique -->
+                <div class="card">
+                    <h2 class="card-title">6. Stack Technique</h2>
+                    <table>
+                        <tr>
+                            <th>Rôle</th>
+                            <th>Technologie</th>
+                        </tr>
+                        <tr>
+                            <td>Langage</td>
+                            <td>Python 3.11</td>
+                        </tr>
+                        <tr>
+                            <td>Framework</td>
+                            <td>Hugging Face</td>
+                        </tr>
+                        <tr>
+                            <td>LLM</td>
+                            <td>Meta-Llama-3-8B-Instruct</td>
+                        </tr>
+                        <tr>
+                            <td>Embeddings</td>
+                            <td>all-MiniLM-L6-v2 (384 dims)</td>
+                        </tr>
+                        <tr>
+                            <td>Base Vect.</td>
+                            <td>ChromaDB (Local)</td>
+                        </tr>
+                        <tr>
+                            <td>Interface</td>
+                            <td>Streamlit / API</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: SECTIONS 7-10 -->
+        <div class="print-page">
+            <div class="content-grid">
+                <!-- 7. Modèles IA -->
+                <div class="card">
+                    <h2 class="card-title">7. Modèles IA</h2>
+                    <p><strong>Génération :</strong> Mistral-7B-Instruct</p>
+                    <p><strong>Embeddings :</strong> all-MiniLM-L6-v2 (384 dims)</p>
+                    <p><strong>Extraction :</strong> roberta-base-squad2</p>
+                </div>
+                <!-- 8. Risques -->
+                <div class="card">
+                    <h2 class="card-title">8. Risques & Mitigations</h2>
+                    <h3>Hallucinations</h3>
+                    <p>Solution : RAG (Sources obligatoires).</p>
+                    <h3>Latence</h3>
+                    <p>Solution : Modèles quantifiés (4-bit).</p>
+                    <h3>Confidentialité</h3>
+                    <p>Solution : Modèles locaux (Off-cloud).</p>
+                </div>
+                <!-- 9. Planning -->
+                <div class="card">
+                    <h2 class="card-title">9. Planning Prévisionnel</h2>
+                    <ul>
+                        <li><strong>Jours 1-2 :</strong> Cadrage & Données.</li>
+                        <li><strong>Jours 3-5 :</strong> Dév (RAG + API).</li>
+                        <li><strong>Jours 6-7 :</strong> Benchmark & Déploiement.</li>
+                        <li><strong>Jours 8+ :</strong> Tests utilisateurs.</li>
+                    </ul>
+                </div>
+                <!-- 10. Ressources -->
+                <div class="card">
+                    <h2 class="card-title">10. Ressources & Liens</h2>
+                    <p><strong>Documentation :</strong></p>
+                    <ul>
+                        <li><a href="https://huggingface.co/inference-api">Hugging Face Inference</a></li>
+                        <li><a href="https://www.sbert.net/">SBERT Docs</a></li>
+                        <li><a href="https://fastapi.tiangolo.com/">FastAPI Tuto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Veille Technique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --accent-color: #667eea;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: white !important;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .page-container {
+            width: 100%;
+        }
+
+        .print-page {
+            width: 100vw;
+            height: 100vh;
+            padding: 0.5rem;
+            position: relative;
+            background: white;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover-page {
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 0.5rem;
+            height: 100%;
+            border: none;
+        }
+
+        .card {
+            background: white !important;
+            color: var(--text-primary);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: none;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .cover-card {
+            padding: 4rem;
+            text-align: center;
+            max-width: 800px;
+            border: none;
+        }
+
+        .cover-card h2 {
+            border: none;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        p,
+        li {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            color: var(--text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-left: 0.5rem;
+        }
+
+        strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                background: white;
+            }
+
+            .print-page {
+                height: 100vh;
+                width: 100vw;
+                page-break-after: always;
+            }
+
+            .card {
+                background: white !important;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- PAGE 1: COVER -->
+        <div class="print-page cover-page">
+            <div class="card cover-card">
+                <h1>Rapport de Veille Technique</h1>
+                <h2>Assistant FAQ Intelligent</h2>
+                <div style="margin-top: 3rem; font-size: 1.2rem;">
+                    <p style="font-size: 1.2rem;"><strong>Étudiant :</strong> Arnaud Rambourg</p>
+                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 12/01/2026</p>
+                    <p style="font-size: 1.2rem;"><strong>Domaine :</strong> NLP & IA Générative</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: SECTIONS 1 to 4 -->
+        <div class="print-page">
+            <div class="content-grid">
+                <!-- 1. État de l'art -->
+                <div class="card">
+                    <h2>1. État de l'art : Architectures</h2>
+                    <h3>1.1 Le RAG (Retrieval-Augmented Generation)</h3>
+                    <p>Connecte un LLM à des données externes sans ré-entraînement.</p>
+                    <ul>
+                        <li><strong>Fonctionnement :</strong> Récupère des extraits (Retrieval) pour contexte.</li>
+                        <li><strong>Utilité :</strong> Réduit les hallucinations.</li>
+                    </ul>
+                    <h3>1.2 La Recherche Sémantique (Embeddings)</h3>
+                    <p>Comprend le sens des questions.</p>
+                    <ul>
+                        <li><strong>Vecteurs :</strong> Transformation du texte en nombres.</li>
+                        <li><strong>Calcul :</strong> Similarité cosinus.</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Sélection des Modèles -->
+                <div class="card">
+                    <h2>2. Sélection des Modèles</h2>
+                    <h3>2.1 Modèles de Langage (LLM)</h3>
+                    <p><strong>Modèle :</strong> Meta-Llama-3-8B-Instruct</p>
+                    <ul>
+                        <li><strong>Pourquoi :</strong> Open source, performant en FR.</li>
+                        <li><strong>Accès :</strong> Via librairie "huggingface_hub".</li>
+                    </ul>
+                    <h3>2.2 Modèles d'Embeddings</h3>
+                    <p><strong>Modèle :</strong> all-MiniLM-L6-v2</p>
+                    <ul>
+                        <li><strong>Pourquoi :</strong> Compact (384 dimensions), rapide.</li>
+                    </ul>
+                </div>
+
+                <!-- 3. Outils & Écosystème -->
+                <div class="card">
+                    <h2>3. Outils & Écosystème</h2>
+                    <h3>Modèle Extractif (Stratégie C)</h3>
+                    <p><strong>Modèle :</strong> roberta-base-squad2</p>
+                    <p>Référence pour l'extraction de réponse exacte.</p>
+                    <h3>Écosystème de Développement</h3>
+                    <ul>
+                        <li><strong>API :</strong> FastAPI (Rapide, Swagger).</li>
+                        <li><strong>Tests :</strong> Pytest.</li>
+                        <li><strong>Indus :</strong> Docker & GitHub Actions.</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Conclusion -->
+                <div class="card">
+                    <h2>4. Conclusion de la veille</h2>
+                    <div style="margin-top: 2rem;">
+                        <p>L'approche retenue privilégie les composants <strong>open source</strong> et
+                            <strong>légers</strong>.</p>
+                        <br>
+                        <p>Ceci est conforme aux contraintes du client souhaitant une future
+                            <strong>souveraineté</strong> sur son hébergement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

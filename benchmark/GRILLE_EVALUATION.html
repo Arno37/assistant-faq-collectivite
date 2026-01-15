@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grille d'Évaluation - Benchmark</title>
+    <style>
+        @page {
+            margin: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            padding: 1rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 1rem;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 0.2rem;
+            font-size: 1.1rem;
+        }
+
+        p {
+            color: #555;
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #bdc3c7;
+            padding: 0.4rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ecf0f1;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        td.center {
+            text-align: center;
+        }
+
+        .note-column {
+            min-width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📊 Grille d'Évaluation du Benchmark</h1>
+    <p>Ce document sert à noter les performances de l'assistant intelligent. Pour chaque question, testez les stratégies
+        et attribuez une note.</p>
+
+    <h2>🎯 Critères de Notation</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Note</th>
+                <th>Signification</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="center"><strong>5</strong></td>
+                <td><strong>Excellent</strong></td>
+                <td>Réponse exacte, complète et naturelle.</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>4</strong></td>
+                <td><strong>Bon</strong></td>
+                <td>Réponse correcte mais style ou détail améliorable.</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>3</strong></td>
+                <td><strong>Moyen</strong></td>
+                <td>Réponse partiellement correcte ou vague.</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>2</strong></td>
+                <td><strong>Insuffisant</strong></td>
+                <td>Hors sujet, incomplet ou format cassé.</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>1</strong></td>
+                <td><strong>Hallucination</strong></td>
+                <td>Informations fausses ou inventées (Critique).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>📝 Résultats des Tests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question (Exemples)</th>
+                <th class="note-column">Strat A<br>(LLM Seul)</th>
+                <th class="note-column">Strat B<br>(RAG)</th>
+                <th class="note-column">Strat C<br>(Extractif)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="center"><strong>1</strong></td>
+                <td>Quel est le Maire ?</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>2</strong></td>
+                <td>Horaires de la piscine ?</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>3</strong></td>
+                <td>Aides au logement ?</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>4</strong></td>
+                <td>Prochain conseil municipal ?</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+            </tr>
+            <tr>
+                <td class="center"><strong>5</strong></td>
+                <td>Comment trier le verre ?</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+                <td>Note : ___ /5</td>
+            </tr>
+            <!-- Filler rows -->
+            <tr>
+                <td class="center">6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">7</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">10</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">11</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="center">12</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
