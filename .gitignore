@@ -23,7 +23,6 @@ Thumbs.db
 
 # Dossiers temporaires ou en trop
 rapports/
-docs/
 
 # Modèles téléchargés (trop lourds pour GitHub)
 models/

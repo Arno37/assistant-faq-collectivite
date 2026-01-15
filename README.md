@@ -53,23 +53,24 @@ Projet de développement et d'évaluation de **3 stratégies d'intelligence arti
 ├── data/
 │   └── raw/
 │       ├── faq_base.json       # Base de 70 questions-réponses
-│       ├── golden_set.json     # 30 questions de test pour benchmark
-│       │
-│       ├── benchmark/          # Grilles d'évaluation
-│       │   ├── GRILLE_EVALUATION.md
-│       │   └── GRILLE_EVALUATION.pdf
-│       │
-│       ├── day_1/              # Livrables Jour 1
-│       │   ├── note_de_cadrage.html
-│       │   ├── note_de_cadrage.pdf
-│       │   ├── rapport_veille_technique.html
-│       │   └── rapport_veille_technique.pdf
-│       │
-│       └── day_2/              # Livrables Jour 2
-│           ├── protocole_benchmark.html
-│           ├── protocole_benchmark.pdf
-│           ├── grille_evaluation.html
-│           └── grille_evaluation.pdf
+│       └── golden_set.json     # 30 questions de test pour benchmark
+│
+├── docs/                        # Documentation du projet
+│   ├── benchmark/               # Grilles d'évaluation
+│   │   ├── GRILLE_EVALUATION.md
+│   │   └── GRILLE_EVALUATION.pdf
+│   │
+│   ├── day_1/                   # Livrables Jour 1
+│   │   ├── note_de_cadrage.html
+│   │   ├── note_de_cadrage.pdf
+│   │   ├── rapport_veille_technique.html
+│   │   └── rapport_veille_technique.pdf
+│   │
+│   └── day_2/                   # Livrables Jour 2
+│       ├── protocole_benchmark.html
+│       ├── protocole_benchmark.pdf
+│       ├── grille_evaluation.html
+│       └── grille_evaluation.pdf
 │
 └── src/
     ├── outils/
@@ -185,10 +186,10 @@ Les résultats sont consignés dans `benchmark/GRILLE_EVALUATION.pdf`.
 
 ## 📖 Documentation
 
-- **Présentation stratégique** : `data/raw/day_1/note_de_cadrage.pdf`
-- **Rapport de veille technique** : `data/raw/day_1/rapport_veille_technique.pdf`
-- **Protocole de benchmark** : `data/raw/day_2/protocole_benchmark.pdf`
-- **Grille d'évaluation** : `data/raw/day_2/grille_evaluation.pdf`
+- **Présentation stratégique** : `docs/day_1/note_de_cadrage.pdf`
+- **Rapport de veille technique** : `docs/day_1/rapport_veille_technique.pdf`
+- **Protocole de benchmark** : `docs/day_2/protocole_benchmark.pdf`
+- **Grille d'évaluation** : `docs/day_2/grille_evaluation.pdf`
 
 ---
 
