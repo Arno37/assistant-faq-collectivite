@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note de Cadrage - Assistant FAQ</title>
+    <title>Note de Cadrage - Projet FAQ Intelligent</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -169,116 +169,137 @@
 </head>
 
 <body>
+
     <div class="page-container">
-        <!-- COVER -->
+
+        <!-- PAGE 1: COVER -->
         <div class="print-page cover-page">
-            <div class="card cover-card">
-                <h1>Présentation Stratégique</h1>
-                <h2 style="font-size: 2rem; color: var(--accent-color); border: none;">Assistant FAQ Intelligent</h2>
+            <div class="card cover-card"
+                style="padding: 4rem; text-align: center; max-width: 800px; border-radius: 24px;">
+                <h1>Note de Cadrage</h1>
+                <h2 style="font-size: 2rem; color: var(--accent-color); border: none;">Projet FAQ Intelligent</h2>
                 <div style="margin-top: 3rem; font-size: 1.2rem;">
                     <p style="font-size: 1.2rem;"><strong>Étudiant :</strong> Arnaud Rambourg</p>
-                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 12/01/2026</p>
-                    <p style="font-size: 1.2rem;"><strong>Version :</strong> 2.0</p>
+                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 16/01/2026</p>
+                    <p style="font-size: 1.2rem;"><strong>Version :</strong> 2.0 (Finale)</p>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE 2: SECTIONS 1-6 -->
+        <!-- PAGE 2: SECTIONS 1 to 6 -->
         <div class="print-page">
             <div class="content-grid">
+
                 <!-- 1. Contexte -->
                 <div class="card">
-                    <h2 class="card-title">1. Contexte & Enjeux</h2>
-                    <p>La communauté de communes reçoit de nombreuses questions récurrentes (déchets, urbanisme).</p>
+                    <h2 class="card-title">1. Contexte & Objectifs</h2>
+                    <h3>Contexte</h3>
+                    <ul>
+                        <li><strong>Client :</strong> Val de Loire Numérique</li>
+                        <li><strong>Problème :</strong> Agents surchargés (60% temps)</li>
+                        <li><strong>Solution :</strong> Assistant intelligent via API REST</li>
+                    </ul>
                     <h3>Objectifs</h3>
                     <ul>
-                        <li>Réduire la charge de demandes et de réponses identiques.</li>
-                        <li>Offrir une réponse 24/7 aux citoyens.</li>
-                        <li>Moderniser l'image de la collectivité.</li>
+                        <li>API d'assistante FAQ avec LLM</li>
+                        <li>Comparer 3 stratégies (Benchmark sur 30 questions)</li>
+                        <li>Industrialisation (Docker, CI/CD)</li>
                     </ul>
                 </div>
-                <!-- 2. Besoin -->
+
+                <!-- 2. Périmètre -->
                 <div class="card">
-                    <h2 class="card-title">2. Analyse du Besoin</h2>
-                    <p><strong>Cible :</strong> Citoyens (tout âge).</p>
-                    <h3>Contraintes</h3>
+                    <h2 class="card-title">2. Périmètre</h2>
+                    <h3 style="color: #4ade80;">✅ In Scope</h3>
                     <ul>
-                        <li>Langage clair</li>
-                        <li>Fiabilité (pas d'erreurs légales).</li>
-                        <li>Souveraineté des données (hébergement local possible).</li>
+                        <li>3 scripts de stratégie fonctionnels</li>
+                        <li>Rapport benchmark (Golden Set 25 questions)</li>
+                        <li>API FastAPI Dockerisée</li>
+                    </ul>
+                    <h3 style="color: #f87171;">❌ Out of Scope</h3>
+                    <ul>
+                        <li>APIs payantes (OpenAI)</li>
+                        <li>Bases de données Cloud</li>
                     </ul>
                 </div>
-                <!-- 3. Strat A -->
+
+                <!-- 3. Stratégie A -->
                 <div class="card">
                     <h2 class="card-title">3. Stratégie A - LLM Seul</h2>
-                    <p><strong>Principe :</strong> Prompt Système + Meta-Llama-3-8B-Instruct <span
+                    <p><strong>Principe :</strong> Prompt Système + Zephyr-7B <span
                             style="color: #f87171; font-weight: bold; margin-left: 0.5rem;">(⚠️ Fiabilité :
                             Faible)</span></p>
                     <h3>Points Clés</h3>
                     <ul>
-                        <li>Répond avec connaissances internes.</li>
-                        <li>"Avantages :" Simplicité, rapide.</li>
-                        <li>"Inconvénients :" Hallucinations élevées.</li>
+                        <li>Répond avec connaissances internes</li>
+                        <li><span style="color: #4ade80;">Avantages :</span> Simplicité, rapide</li>
+                        <li><span style="color: #f87171;">Inconvénients :</span> Hallucinations élevées</li>
                     </ul>
                 </div>
-                <!-- 4. Strat B -->
+
+                <!-- 4. Stratégie B -->
                 <div class="card">
                     <h2 class="card-title">4. Stratégie B - RAG</h2>
-                    <p><strong>Principe :</strong> Prompt Système + Embeddings + Meta-Llama-3-8B-Instruct</p>
+                    <p><strong>Principe :</strong> Prompt Système + Embeddings + Zephyr-7B</p>
                     <h3>Points Clés</h3>
                     <ul>
-                        <li>Recherche vectorielle puis génération.</li>
-                        <li>"Avantages :" Fiable, sourcé.</li>
-                        <li>"Inconvénients :" Latence, complexité.</li>
+                        <li>Recherche vectorielle puis génération</li>
+                        <li><span style="color: #4ade80;">Avantages :</span> Fiable, contextuel</li>
+                        <li><span style="color: #f87171;">Inconvénients :</span> Latence, complexe</li>
                     </ul>
                 </div>
-                <!-- 5. Strat C -->
+
+                <!-- 5. Stratégie C -->
                 <div class="card">
                     <h2 class="card-title">5. Stratégie C - Q&A Extractif</h2>
                     <p><strong>Principe :</strong> Prompt Système + Recherche Sémantique + roberta-base-squad2</p>
                     <h3>Processus</h3>
                     <p>"Copie-colle" le passage exact du document source.</p>
+                    <h3>Points Clés</h3>
+                    <ul>
+                        <li><span style="color: #4ade80;">Avantages :</span> Extrêmement précis, zéro hallucination</li>
+                        <li><span style="color: #f87171;">Inconvénients :</span> Réponses robotiques</li>
+                    </ul>
                 </div>
-                <!-- 6. Stack Technique -->
+
+                <!-- 6. Stack Technique (Moved Here) -->
                 <div class="card">
                     <h2 class="card-title">6. Stack Technique</h2>
                     <table>
                         <tr>
-                            <th>Rôle</th>
-                            <th>Technologie</th>
+                            <th>Langage</th>
+                            <td>Python 3.10+</td>
                         </tr>
                         <tr>
-                            <td>Langage</td>
-                            <td>Python 3.11</td>
+                            <th>API</th>
+                            <td>FastAPI (Swagger)</td>
                         </tr>
                         <tr>
-                            <td>Framework</td>
-                            <td>Hugging Face</td>
+                            <th>LLM</th>
+                            <td>Zephyr-7B-Beta (HF)</td>
                         </tr>
                         <tr>
-                            <td>LLM</td>
-                            <td>Meta-Llama-3-8B-Instruct</td>
-                        </tr>
-                        <tr>
-                            <td>Embeddings</td>
+                            <th>Embeddings</th>
                             <td>all-MiniLM-L6-v2 (384 dims)</td>
                         </tr>
                         <tr>
-                            <td>Base Vect.</td>
-                            <td>ChromaDB (Local)</td>
+                            <th>Tests</th>
+                            <td>Pytest</td>
                         </tr>
                         <tr>
-                            <td>Interface</td>
-                            <td>Streamlit / API</td>
+                            <th>CI/CD</th>
+                            <td>GitHub Actions</td>
                         </tr>
                     </table>
                 </div>
+
             </div>
         </div>
 
-        <!-- PAGE 3: SECTIONS 7-10 -->
+        <!-- PAGE 3: SECTIONS 7 to 10 -->
         <div class="print-page">
-            <div class="content-grid">
+            <div class="content-grid"> <!-- Use standard 3-row grid -->
+
                 <!-- 7. Modèles IA -->
                 <div class="card">
                     <h2 class="card-title">7. Modèles IA</h2>
@@ -286,39 +307,49 @@
                     <p><strong>Embeddings :</strong> all-MiniLM-L6-v2 (384 dims)</p>
                     <p><strong>Extraction :</strong> roberta-base-squad2</p>
                 </div>
-                <!-- 8. Risques -->
+
+                <!-- 8. Planning -->
                 <div class="card">
-                    <h2 class="card-title">8. Risques & Mitigations</h2>
-                    <h3>Hallucinations</h3>
-                    <p>Solution : RAG (Sources obligatoires).</p>
-                    <h3>Latence</h3>
-                    <p>Solution : Modèles quantifiés (4-bit).</p>
-                    <h3>Confidentialité</h3>
-                    <p>Solution : Modèles locaux (Off-cloud).</p>
-                </div>
-                <!-- 9. Planning -->
-                <div class="card">
-                    <h2 class="card-title">9. Planning Prévisionnel</h2>
+                    <h2 class="card-title">8. Planning Réalisé</h2>
                     <ul>
-                        <li><strong>Jours 1-2 :</strong> Cadrage & Données.</li>
-                        <li><strong>Jours 3-5 :</strong> Dév (RAG + API).</li>
-                        <li><strong>Jours 6-7 :</strong> Benchmark & Déploiement.</li>
-                        <li><strong>Jours 8+ :</strong> Tests utilisateurs.</li>
+                        <li><strong>J1-J2 :</strong> Cadrage & Veille (✅ Fait)</li>
+                        <li><strong>J3-J5 :</strong> Implémentation IA (✅ Fait)</li>
+                        <li><strong>J6 :</strong> Benchmark complet (✅ Fait)</li>
+                        <li><strong>J7-J9 :</strong> API & Industrialisation (En cours)</li>
+                        <li><strong>J10 :</strong> Soutenance finale</li>
                     </ul>
                 </div>
-                <!-- 10. Ressources -->
+
+                <!-- 9. Risques -->
                 <div class="card">
-                    <h2 class="card-title">10. Ressources & Liens</h2>
-                    <p><strong>Documentation :</strong></p>
+                    <h2 class="card-title">9. Risques</h2>
                     <ul>
-                        <li><a href="https://huggingface.co/inference-api">Hugging Face Inference</a></li>
-                        <li><a href="https://www.sbert.net/">SBERT Docs</a></li>
-                        <li><a href="https://fastapi.tiangolo.com/">FastAPI Tuto</a></li>
+                        <li>⚠️ <strong>API Down :</strong> Modèle local ou cache</li>
+                        <li>⚠️ <strong>Hallucinations :</strong> Prompt strict</li>
+                        <li>⚠️ <strong>Latence > 5s :</strong> Embeddings légers</li>
                     </ul>
                 </div>
+
+                <!-- 10. Questions & Ressources -->
+                <div class="card">
+                    <h2 class="card-title">10. Questions & Ressources</h2>
+                    <h3>Questions</h3>
+                    <p>Délai max ? Multilingue ?</p>
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="https://huggingface.co/docs/api-inference/index"
+                                style="color:var(--accent-color)">HF Inference API</a></li>
+                        <li><a href="https://www.sbert.net" style="color:var(--accent-color)">SBERT Guide</a></li>
+                        <li><a href="https://fastapi.tiangolo.com/tutorial/" style="color:var(--accent-color)">FastAPI
+                                Docs</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
+
     </div>
+
 </body>
 
 </html>

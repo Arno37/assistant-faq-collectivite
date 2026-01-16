@@ -1,0 +1,31 @@
+Question ID,Question,Type,Stratégie A Score,Stratégie B Score,Stratégie C Score,Stratégie A Latence (ms),Stratégie B Latence (ms),Stratégie C Latence (ms)
+GS001,"Comment obtenir un acte de naissance ?",direct_match,0,80,20,16509,8493,942
+GS002,"Quels sont les horaires de la déchetterie ?",direct_match,0,100,50,6354,6829,89
+GS003,"Comment s'inscrire sur les listes électorales ?",direct_match,50,100,50,16469,6607,114
+GS004,"Comment demander un permis de construire ?",direct_match,33,50,0,17218,7087,115
+GS005,"Quels déchets mettre dans le bac jaune ?",direct_match,0,66,16,15956,6039,78
+GS006,"Comment faire une procuration pour voter ?",direct_match,0,25,25,16846,5910,109
+GS007,"Comment inscrire mon enfant à la crèche ?",direct_match,0,25,50,20678,5743,127
+GS008,"Comment créer une association loi 1901 ?",direct_match,40,80,20,20370,6807,90
+GS009,"Comment obtenir la carte mobilité inclusion ?",direct_match,25,100,25,19321,4038,77
+GS010,"Quels sont les tarifs de la cantine scolaire ?",direct_match,0,75,25,13804,8753,105
+GS011,"Je voudrais un extrait de naissance, comment faire ?",reformulation,25,25,50,16343,4915,97
+GS012,"C'est quoi les jours de ramassage des poubelles ?",reformulation,0,0,0,16395,6995,94
+GS013,"On peut jeter quoi dans la poubelle de recyclage ?",reformulation,40,0,0,17531,8703,73
+GS014,"J'ai perdu mon permis de conduire, que dois-je faire ?",reformulation,0,75,25,16787,5922,113
+GS015,"Je déménage, comment prévenir les impôts ?",reformulation,25,100,0,21032,5673,101
+GS016,"Ma fille a 3 ans, je dois l'inscrire à la maternelle ?",reformulation,0,80,20,11195,6067,72
+GS017,"Je veux vendre ma voiture, il me faut quoi comme papier de non-gage ?",reformulation,20,80,40,16280,5789,102
+GS018,"Il y a des bus qui passent par chez nous ? Où voir les horaires ?",reformulation,0,75,25,11141,5423,100
+GS019,"Mon voisin a une fuite d'eau dans la rue, qui appeler ?",reformulation,0,50,25,16200,10709,159
+GS020,"Pour le mariage civil, c'est quoi la liste des papiers à donner ?",reformulation,20,20,0,19361,5957,122
+GS021,"Quelle est la capitale de l'Australie ?",hors_sujet,100,100,100,16405,7767,115
+GS022,"Comment faire une tarte aux pommes ?",hors_sujet,100,100,100,16423,5763,106
+GS023,"Quel est le meilleur smartphone en 2025 ?",hors_sujet,100,100,100,16940,8574,112
+GS024,"Comment investir en bourse ?",hors_sujet,100,100,100,16479,6045,79
+GS025,"Qui a gagné la coupe du monde de football en 1998 ?",hors_sujet,100,100,100,19333,6033,89
+GS026,"Je viens d'avoir un bébé et je ne suis pas mariée avec le père, quelles démarches dois-je faire ?",complexe,25,25,25,16469,8786,108
+GS027,"Je construis une maison avec piscine, quelles autorisations me faut-il ?",complexe,80,40,0,18359,7776,94
+GS028,"Je suis en difficulté financière, je n'arrive plus à payer mes factures d'eau et d'électricité, qui peut m'aider ?",complexe,20,20,0,16665,5814,109
+GS029,"Mon association veut organiser un vide-grenier sur la place du village, comment faire ?",complexe,33,16,16,20291,5960,113
+GS030,"J'emménage dans la commune, quelles sont toutes les démarches administratives à faire ?",complexe,25,0,0,16759,5692,111

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Benchmark avec Recommandation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        h3 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+        }
+
+        .recommendation {
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .risk {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🏆 Rapport de Benchmark : Assistant FAQ Intelligent</h1>
+    <p><strong>Date :</strong> 16 janvier 2026<br><strong>Projet :</strong> Assistant FAQ pour Collectivité Territoriale
+    </p>
+
+    <h2>1. 📝 Résumé Exécutif</h2>
+    <p>Ce benchmark évalue trois approches d'IA pour répondre aux questions des citoyens. L'objectif est de trouver
+        l'équilibre optimal entre <strong>précision</strong>, <strong>fiabilité</strong> et <strong>vitesse</strong>.
+    </p>
+
+    <div class="recommendation">
+        <strong>Recommandation :</strong> La <strong>Stratégie B (RAG)</strong> est la solution retenue pour le
+        déploiement final.
+    </div>
+
+    <h2>2. 📊 Résultats Quantitatifs</h2>
+    <table>
+        <tr>
+            <th>Métrique</th>
+            <th>Stratégie A (LLM Seul)</th>
+            <th>Stratégie B (RAG)</th>
+            <th>Stratégie C (Extractif)</th>
+        </tr>
+        <tr>
+            <td>Score mots-clés</td>
+            <td>32 / 100</td>
+            <td><strong>60 / 100</strong></td>
+            <td>33 / 100</td>
+        </tr>
+        <tr>
+            <td>Latence Moyenne</td>
+            <td>16.6s</td>
+            <td>6.7s</td>
+            <td><strong>0.1s</strong></td>
+        </tr>
+        <tr>
+            <td>Pertinence Humaine</td>
+            <td>25%</td>
+            <td><strong>75%</strong></td>
+            <td>15%</td>
+        </tr>
+    </table>
+
+    <h2>3. 🔍 Analyse des Stratégies</h2>
+    <h3>Stratégie B : RAG (Gagnante)</h3>
+    <p>C'est la seule stratégie capable d'assurer la "vérité" des informations en se basant sur les documents officiels
+        de la mairie. Elle gère parfaitement les reformulations et les questions complexes.</p>
+
+    <h2>4. ⚠️ Analyse des Risques</h2>
+    <div class="risk">
+        Le taux d'hallucination résiduel est de ~13%. Il est impératif de nettoyer la base FAQ et d'augmenter le seuil
+        de pertinence sémantique avant la mise en production.
+    </div>
+
+    <h2>5. 💡 Recommandation Finale</h2>
+    <ul>
+        <li>Implémenter la <strong>Stratégie B</strong>.</li>
+        <li>Passer sur un modèle local (Ollama) pour la souveraineté des données.</li>
+        <li>Ajouter un filtrage strict pour les questions hors-sujet.</li>
+    </ul>
+</body>
+
+</html>

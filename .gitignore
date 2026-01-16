@@ -22,7 +22,7 @@ Thumbs.db
 .idea/
 
 # Dossiers temporaires ou en trop
-rapports/
+# rapports/
 
 # Modèles téléchargés (trop lourds pour GitHub)
 models/

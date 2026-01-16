@@ -11,6 +11,7 @@
             --text-primary: #333333;
             --text-secondary: #555555;
             --accent-color: #667eea;
+            /* Purple for accents */
             --border-color: #e0e0e0;
         }
 
@@ -59,6 +60,7 @@
 
         .card {
             background: white !important;
+            /* Force White */
             color: var(--text-primary);
             border-radius: 12px;
             padding: 1rem;
@@ -67,6 +69,7 @@
             display: flex;
             flex-direction: column;
             box-shadow: none;
+            /* No shadow/grey */
         }
 
         h1 {
@@ -82,6 +85,7 @@
             text-align: center;
             max-width: 800px;
             border: none;
+            /* Clean cover */
         }
 
         .cover-card h2 {
@@ -105,6 +109,7 @@
             margin-top: 0.5rem;
             margin-bottom: 0.2rem;
             color: #000;
+            /* Darker headings */
             font-weight: 600;
         }
 
@@ -123,6 +128,7 @@
 
         strong {
             color: #000;
+            /* Black for emphasis */
             font-weight: 600;
         }
 
@@ -151,7 +157,9 @@
 </head>
 
 <body>
+
     <div class="page-container">
+
         <!-- PAGE 1: COVER -->
         <div class="print-page cover-page">
             <div class="card cover-card">
@@ -159,7 +167,7 @@
                 <h2>Assistant FAQ Intelligent</h2>
                 <div style="margin-top: 3rem; font-size: 1.2rem;">
                     <p style="font-size: 1.2rem;"><strong>Étudiant :</strong> Arnaud Rambourg</p>
-                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 12/01/2026</p>
+                    <p style="font-size: 1.2rem;"><strong>Date :</strong> 16/01/2026</p>
                     <p style="font-size: 1.2rem;"><strong>Domaine :</strong> NLP & IA Générative</p>
                 </div>
             </div>
@@ -168,20 +176,21 @@
         <!-- PAGE 2: SECTIONS 1 to 4 -->
         <div class="print-page">
             <div class="content-grid">
+
                 <!-- 1. État de l'art -->
                 <div class="card">
                     <h2>1. État de l'art : Architectures</h2>
                     <h3>1.1 Le RAG (Retrieval-Augmented Generation)</h3>
-                    <p>Connecte un LLM à des données externes sans ré-entraînement.</p>
+                    <p>Connecte un LLM à des données externes sans ré-entraînement</p>
                     <ul>
-                        <li><strong>Fonctionnement :</strong> Récupère des extraits (Retrieval) pour contexte.</li>
-                        <li><strong>Utilité :</strong> Réduit les hallucinations.</li>
+                        <li><strong>Fonctionnement :</strong> Récupère des extraits (Retrieval) pour contexte</li>
+                        <li><strong>Utilité :</strong> Réduit les hallucinations</li>
                     </ul>
                     <h3>1.2 La Recherche Sémantique (Embeddings)</h3>
-                    <p>Comprend le sens des questions.</p>
+                    <p>Comprend le sens des questions</p>
                     <ul>
-                        <li><strong>Vecteurs :</strong> Transformation du texte en nombres.</li>
-                        <li><strong>Calcul :</strong> Similarité cosinus.</li>
+                        <li><strong>Vecteurs :</strong> Transformation du texte en nombres</li>
+                        <li><strong>Calcul :</strong> Similarité cosinus</li>
                     </ul>
                 </div>
 
@@ -189,15 +198,15 @@
                 <div class="card">
                     <h2>2. Sélection des Modèles</h2>
                     <h3>2.1 Modèles de Langage (LLM)</h3>
-                    <p><strong>Modèle :</strong> Meta-Llama-3-8B-Instruct</p>
+                    <p><strong>Modèle :</strong> Zephyr-7B-Beta</p>
                     <ul>
-                        <li><strong>Pourquoi :</strong> Open source, performant en FR.</li>
-                        <li><strong>Accès :</strong> Via librairie "huggingface_hub".</li>
+                        <li><strong>Pourquoi :</strong> Basé sur Mistral, optimisé pour le chat, excellent en FR</li>
+                        <li><strong>Accès :</strong> Via librairie "huggingface_hub"</li>
                     </ul>
                     <h3>2.2 Modèles d'Embeddings</h3>
                     <p><strong>Modèle :</strong> all-MiniLM-L6-v2</p>
                     <ul>
-                        <li><strong>Pourquoi :</strong> Compact (384 dimensions), rapide.</li>
+                        <li><strong>Pourquoi :</strong> Compact (384 dimensions), rapide</li>
                     </ul>
                 </div>
 
@@ -206,12 +215,12 @@
                     <h2>3. Outils & Écosystème</h2>
                     <h3>Modèle Extractif (Stratégie C)</h3>
                     <p><strong>Modèle :</strong> roberta-base-squad2</p>
-                    <p>Référence pour l'extraction de réponse exacte.</p>
+                    <p>Référence pour l'extraction de réponse exacte</p>
                     <h3>Écosystème de Développement</h3>
                     <ul>
-                        <li><strong>API :</strong> FastAPI (Rapide, Swagger).</li>
-                        <li><strong>Tests :</strong> Pytest.</li>
-                        <li><strong>Indus :</strong> Docker & GitHub Actions.</li>
+                        <li><strong>API :</strong> FastAPI (Rapide, Swagger)</li>
+                        <li><strong>Tests :</strong> Pytest</li>
+                        <li><strong>Indus :</strong> Docker & GitHub Actions</li>
                     </ul>
                 </div>
 
@@ -220,15 +229,20 @@
                     <h2>4. Conclusion de la veille</h2>
                     <div style="margin-top: 2rem;">
                         <p>L'approche retenue privilégie les composants <strong>open source</strong> et
-                            <strong>légers</strong>.</p>
+                            <strong>légers</strong>.
+                        </p>
                         <br>
                         <p>Ceci est conforme aux contraintes du client souhaitant une future
-                            <strong>souveraineté</strong> sur son hébergement.</p>
+                            <strong>souveraineté</strong> sur son hébergement.
+                        </p>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
+
 </body>
 
 </html>
