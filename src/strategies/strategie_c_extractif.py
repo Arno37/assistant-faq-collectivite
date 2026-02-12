@@ -77,11 +77,21 @@ def interroger_extractif(question):
         print(f"\n✅ Réponse extraite (Confiance: {confiance:.2%}) :")
         print(f"   {reponse_extraite}")
         
-        return reponse_extraite
+        # Validation du score de confiance
+        return valider_reponse(reponse_extraite, confiance)
         
     except Exception as e:
         print(f"❌ Erreur lors de l'extraction : {e}")
         return "Je n'ai pas pu extraire une réponse précise du document."
+
+def valider_reponse(reponse: str, score: float, seuil: float = 0.20) -> str:
+    """
+    Vérifie si la réponse extraite est assez fiable.
+    Si le score est trop bas, on préfère dire qu'on ne sait pas.
+    """
+    if score < seuil:
+        return f"Je ne suis pas assez sûr de la réponse (Confiance: {score:.1%}). Pouvez-vous reformuler ?"
+    return reponse
 
 
 if __name__ == "__main__":

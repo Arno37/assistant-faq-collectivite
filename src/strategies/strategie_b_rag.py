@@ -29,6 +29,22 @@ corpus_embeddings = embedder.encode(documents_faq, convert_to_tensor=True)
 
 client = obtenir_client_hf()
 
+def construire_prompt_rag(question, contexte):
+    """
+    Construit le prompt système pour le modèle RAG.
+    Prend en entrée la question et une liste de documents (contexte).
+    """
+    # On combine les documents en un seul texte
+    contexte_combine = "\n\n".join(contexte)
+    
+    return f"""
+Tu es un assistant de mairie. Utilise EXCLUSIVEMENT le contexte ci-dessous pour répondre.
+Si la réponse n'est pas dans le contexte, dis "Je ne sais pas".
+
+CONTEXTE : 
+{contexte_combine}
+"""
+
 def interroger_rag(question):
     print(f"\nRecherche pour : {question}")
     
@@ -44,17 +60,8 @@ def interroger_rag(question):
     for i, (doc, score) in enumerate(zip(top_docs, scores), 1):
         print(f"  {i}. Pertinence: {score:.4f} - {doc[:80]}...")
     
-    # Combiner les 3 documents en un seul contexte
-    contexte_combine = "\n\n".join(top_docs)
-    
     # B. Construction de la réponse avec l'IA
-    prompt_systeme = f"""
-Tu es un assistant de mairie. Utilise EXCLUSIVEMENT le contexte ci-dessous pour répondre.
-Si la réponse n'est pas dans le contexte, dis "Je ne sais pas".
-
-CONTEXTE : 
-{contexte_combine}
-"""
+    prompt_systeme = construire_prompt_rag(question, top_docs)
     
     messages = [
         {"role": "system", "content": prompt_systeme},
