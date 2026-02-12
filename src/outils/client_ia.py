@@ -6,7 +6,7 @@ from huggingface_hub import InferenceClient
 load_dotenv()
 token = os.getenv("HF_TOKEN")
 
-MODELE_LLM = "HuggingFaceH4/zephyr-7b-alpha"
+MODELE_LLM = "mistralai/Mistral-7B-Instruct-v0.3"
 
 # Configuration centralisée du client
 def obtenir_client_hf():
