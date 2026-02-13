@@ -86,19 +86,23 @@ def interroger_rag(question):
         print(f"  {i}. Pertinence: {score:.4f} - {doc[:80]}...")
     
     # B. Construction de la réponse avec l'IA
-    prompt_systeme = construire_prompt_rag(question, top_docs)
-    
-    messages = [
-        {"role": "system", "content": prompt_systeme},
-        {"role": "user", "content": question}
-    ]
-    
-    reponse = _client.chat_completion(
-        model=MODELE_LLM,
-        messages=messages, 
-        max_tokens=150
-    )
-    return reponse.choices[0].message.content
+    try:
+        prompt_systeme = construire_prompt_rag(question, top_docs)
+        
+        messages = [
+            {"role": "system", "content": prompt_systeme},
+            {"role": "user", "content": question}
+        ]
+        
+        reponse = _client.chat_completion(
+            model=MODELE_LLM,
+            messages=messages, 
+            max_tokens=150
+        )
+        return reponse.choices[0].message.content
+    except Exception as e:
+        print(f"❌ Erreur API IA : {e}")
+        return "Bonjour, je rencontre actuellement une difficulté technique pour générer une réponse. Veuillez réessayer dans quelques instants."
 
 
 if __name__ == "__main__":
