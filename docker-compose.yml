@@ -15,22 +15,22 @@ services:
       - ./src:/app/src
       - ./data:/app/data
     ports:
-      # Port pour une future API (optionnel)
+      # Port exposé pour l'API FastAPI
       - "8000:8000"
     restart: unless-stopped
-    command: python -m src.strategies.strategie_b_rag
+    # On laisse le Dockerfile gérer la commande par défaut (uvicorn)
 
-  # Service optionnel : Base de données vectorielle (ChromaDB)
-  # Décommenter si tu veux utiliser ChromaDB en production
-  # chromadb:
-  #   image: chromadb/chroma:latest
-  #   container_name: chromadb
-  #   ports:
-  #     - "8001:8000"
-  #   volumes:
-  #     - chroma-data:/chroma/chroma
-  #   restart: unless-stopped
+    # Service optionnel : Base de données vectorielle (ChromaDB)
+    # Décommenter si tu veux utiliser ChromaDB en production
+    # chromadb:
+    #   image: chromadb/chroma:latest
+    #   container_name: chromadb
+    #   ports:
+    #     - "8001:8000"
+    #   volumes:
+    #     - chroma-data:/chroma/chroma
+    #   restart: unless-stopped
 
-# Volumes persistants
+    # Volumes persistants
 volumes:
   chroma-data:

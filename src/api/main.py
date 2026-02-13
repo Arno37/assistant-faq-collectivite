@@ -19,10 +19,32 @@ import os
 # Cela permet d'importer src.strategies.*
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
+import logging
+from datetime import datetime
+
 # Import des 3 stratégies qu'on a déjà créées
 from src.strategies.strategie_a_llm_seul import executer_strategie_a
 from src.strategies.strategie_b_rag import interroger_rag
 from src.strategies.strategie_c_extractif import interroger_extractif
+from src.utils.nettoyage import nettoyer_texte
+
+# ============================================================
+# CONFIGURATION DU LOGGING (PRO)
+# ============================================================
+LOG_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../logs"))
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+# Configurer le logger pour écrire dans api_access.log
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.FileHandler(os.path.join(LOG_DIR, "api_access.log")),
+        logging.StreamHandler() # Garde l'affichage dans le terminal
+    ]
+)
+logger = logging.getLogger("assistant-faq")
 
 # ============================================================
 # CRÉATION DE L'APPLICATION
@@ -85,6 +107,14 @@ def poser_question(requete: QuestionRequest):
     # Mesurer le temps de début
     debut = time.time()
     
+    # --- MODE DÉMO : Affichage du nettoyage ---
+    print("\n" + "="*50)
+    print(f"🔍 [DÉMO] QUESTION BRUTE : {requete.question}")
+    print(f"✨ [DÉMO] QUESTION NETTOYÉE : {nettoyer_texte(requete.question)}")
+    print("="*50 + "\n")
+    
+    logger.info(f"Requête reçue - Stratégie: {requete.strategie} | Question: {requete.question[:50]}...")
+    
     # Appeler la bonne stratégie selon le choix
     try:
         if requete.strategie == "A":
@@ -94,6 +124,7 @@ def poser_question(requete: QuestionRequest):
         else:  # C
             reponse = interroger_extractif(requete.question)
     except Exception as e:
+        logger.error(f"Erreur lors du traitement de la question: {str(e)}")
         raise HTTPException(
             status_code=500, 
             detail=f"Erreur lors du traitement : {str(e)}"
@@ -101,6 +132,7 @@ def poser_question(requete: QuestionRequest):
     
     # Calculer le temps écoulé
     temps_ms = int((time.time() - debut) * 1000)
+    logger.info(f"Réponse envoyée - Temps: {temps_ms}ms")
     
     # Retourner la réponse
     return ReponseResponse(

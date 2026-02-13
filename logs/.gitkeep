@@ -1,0 +1,2 @@
+Ce dossier est destiné à recueillir les journaux d'exécution de l'application en production (api_access.log, error.log, audit_questions.log).
+Le fichier .gitkeep permet d'assurer que ce dossier vide fait bien partie du projet lors du déploiement.

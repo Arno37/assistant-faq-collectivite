@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calcul Pondéré du Benchmark - Assistant FAQ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            padding: 40px;
+            color: #1a202c;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            border-bottom: 3px solid #3182ce;
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .methodology {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #edf2f7;
+            color: #4a5568;
+            font-weight: bold;
+        }
+
+        .strat-name {
+            font-weight: bold;
+            text-align: left;
+            background: #f8fafc;
+        }
+
+        .score-final {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+
+        .winner-row {
+            background: #f0fff4;
+        }
+
+        .badge-win {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #718096;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>⚖️ Rapport d'Analyse Pondéré (Benchmark Final)</h1>
+
+    <div class="methodology">
+        <h3>🎯 Méthodologie du Calcul</h3>
+        <p>Conformément aux critères définis pour le projet, chaque stratégie a été évaluée selon la pondération
+            suivante :</p>
+        <ul>
+            <li><strong>Exactitude (30%) :</strong> Score mots-clés sur le Golden Set.</li>
+            <li><strong>Pertinence (20%) :</strong> Qualité de la réponse (échelle 0-2).</li>
+            <li><strong>Hallucinations (20%) :</strong> % de réponses garanties sans invention.</li>
+            <li><strong>Latence (15%) :</strong> Temps de réponse (Bonus si < 5s).</li>
+            <li><strong>Complexité (15%) :</strong> Soutenabilité et maintenance.</li>
+        </ul>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Critères (Poids)</th>
+                <th>Strat A (LLM Seul)</th>
+                <th>Strat B (RAG)</th>
+                <th>Strat C (Extr.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="strat-name">Exactitude (30%)</td>
+                <td>32 / 100</td>
+                <td>60 / 100</td>
+                <td>33 / 100</td>
+            </tr>
+            <tr>
+                <td class="strat-name">Pertinence (20%)</td>
+                <td>25 / 100</td>
+                <td>75 / 100</td>
+                <td>15 / 100</td>
+            </tr>
+            <tr>
+                <td class="strat-name">Hallucinations (20%)</td>
+                <td>20 / 100</td>
+                <td>85 / 100</td>
+                <td>95 / 100</td>
+            </tr>
+            <tr>
+                <td class="strat-name">Latence (15%)</td>
+                <td>10 / 100</td>
+                <td>55 / 100</td>
+                <td>100 / 100</td>
+            </tr>
+            <tr>
+                <td class="strat-name">Complexité (15%)</td>
+                <td>90 / 100</td>
+                <td>40 / 100</td>
+                <td>60 / 100</td>
+            </tr>
+            <tr class="winner-row">
+                <td class="strat-name"><strong>NOTE FINALE (/100)</strong></td>
+                <td class="score-final">33.6</td>
+                <td class="score-final">64.3 <span class="badge-win">GAGNANT</span></td>
+                <td class="score-final">55.9</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 40px;">
+        <h3>🔍 Conclusion du Calcul Pondéré</h3>
+        <p>La <strong>Stratégie B (RAG)</strong> l'emporte avec une note finale de <strong>64.3/100</strong>. </p>
+        <p>Bien que la Stratégie C soit plus rapide et moins complexe, elle échoue sur les critères de
+            <strong>Pertinence</strong> et d'<strong>Exactitude</strong> (mots-clés), ce qui la rend inutilisable pour
+            un service public. La Stratégie A est disqualifiée par son taux d'hallucination trop élevé.</p>
+    </div>
+
+    <div class="footer">
+        Document technique généré pour la soutenance J6 - 13 février 2026<br>
+        Projet : Assistant FAQ Intelligent pour Collectivité Territoriale
+    </div>
+
+</body>
+
+</html>

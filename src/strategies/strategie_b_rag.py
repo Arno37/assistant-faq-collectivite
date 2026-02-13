@@ -6,7 +6,8 @@ import json
 
 # Permet d'importer les modules src.* même si on lance le script depuis un sous-dossier
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-from src.outils.client_ia import obtenir_client_hf, MODELE_LLM
+from src.utils.client_ia import obtenir_client_hf, MODELE_LLM
+from src.utils.nettoyage import nettoyer_texte
 
 # Variables globales pour le chargement paresseux
 _embedder = None
@@ -33,7 +34,7 @@ def _charger_ressources():
 
     # 2. Modèle d'embeddings
     _embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    _corpus_embeddings = _embedder.encode(_documents_faq, convert_to_tensor=True)
+    _corpus_embeddings = _embedder.encode(_documents_faq, convert_to_tensor=True, show_progress_bar=False)
 
     # 3. Client IA
     _client = obtenir_client_hf()
@@ -49,8 +50,9 @@ def construire_prompt_rag(question, contexte):
     contexte_combine = "\n\n".join(contexte)
     
     return f"""
-Tu es un assistant de mairie. Utilise EXCLUSIVEMENT le contexte ci-dessous pour répondre.
-Si la réponse n'est pas dans le contexte, dis "Je ne sais pas".
+Tu es un assistant de mairie poli et serviable. Commence TOUJOURS ta réponse par "Bonjour,".
+Utilise EXCLUSIVEMENT le contexte ci-dessous pour répondre. 
+Si la réponse n'est pas dans le contexte, dis exactement : "Bonjour, ceci sort de mon domaine de compétence. Veuillez renouveler votre demande en lien avec la collectivité territoriale ou les démarches administratives."
 
 CONTEXTE : 
 {contexte_combine}
@@ -58,16 +60,27 @@ CONTEXTE :
 
 def interroger_rag(question):
     _charger_ressources()
-    print(f"\nRecherche pour : {question}")
+    
+    # Nettoyage de la question pour la recherche
+    question_propre = nettoyer_texte(question)
+    print(f"\n[DEBUG] Question brute : {question}")
+    print(f"[DEBUG] Question nettoyée : {question_propre}")
     
     # A. Recherche des 3 documents les plus pertinents
-    query_embedding = _embedder.encode(question, convert_to_tensor=True)
+    query_embedding = _embedder.encode(question_propre, convert_to_tensor=True, show_progress_bar=False)
     hits = util.semantic_search(query_embedding, _corpus_embeddings, top_k=3)
     
     # Récupérer les 3 meilleurs documents
     top_docs = [_documents_faq[hit['corpus_id']] for hit in hits[0]]
     scores = [hit['score'] for hit in hits[0]]
     
+    # --- AJOUT SÉCURITÉ : Seuil de pertinence ---
+    # Si même le meilleur document a un score trop bas (< 0.35), 
+    # on considère que c'est hors sujet sans même interroger l'IA.
+    if scores[0] < 0.35:
+        return "Bonjour, ceci sort de mon domaine de compétence. Veuillez renouveler votre demande en lien avec la collectivité territoriale ou les démarches administratives."
+    # ---------------------------------------------
+
     print(f"\n📊 Top 3 documents trouvés :")
     for i, (doc, score) in enumerate(zip(top_docs, scores), 1):
         print(f"  {i}. Pertinence: {score:.4f} - {doc[:80]}...")

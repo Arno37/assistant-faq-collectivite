@@ -33,7 +33,7 @@ def _charger_ressources():
 
     # 2. Modèles sémantiques
     _embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    _corpus_embeddings = _embedder.encode(documents_recherche, convert_to_tensor=True)
+    _corpus_embeddings = _embedder.encode(documents_recherche, convert_to_tensor=True, show_progress_bar=False)
 
     # 3. Modèle extractif
     model_name = "etalab-ia/camembert-base-squadFR-fquad-piaf"
@@ -62,7 +62,7 @@ def interroger_extractif(question):
     print(f"Question : {question}")
     
     # A. Recherche du document le plus pertinent
-    query_embedding = _embedder.encode(question, convert_to_tensor=True)
+    query_embedding = _embedder.encode(question, convert_to_tensor=True, show_progress_bar=False)
     hits = util.semantic_search(query_embedding, _corpus_embeddings, top_k=1)
     
     meilleur_hit = hits[0][0]

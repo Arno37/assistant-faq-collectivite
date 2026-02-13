@@ -42,45 +42,19 @@ Projet de développement et d'évaluation de **3 stratégies d'intelligence arti
 
 ---
 
-## 📂 Structure du Projet
+## 🏗️ Structure du Projet
 
-```
+```text
 .
-├── README.md                    # Ce fichier
-├── requirements.txt             # Dépendances Python
-├── .env                         # Token API (à créer)
-│
-├── data/
-│   └── raw/
-│       ├── faq_base.json       # Base de 70 questions-réponses
-│       └── golden_set.json     # 30 questions de test pour benchmark
-│
-├── docs/                        # Documentation du projet
-│   ├── benchmark/               # Grilles d'évaluation
-│   │   ├── GRILLE_EVALUATION.md
-│   │   └── GRILLE_EVALUATION.pdf
-│   │
-│   ├── day_1/                   # Livrables Jour 1
-│   │   ├── note_de_cadrage.html
-│   │   ├── note_de_cadrage.pdf
-│   │   ├── rapport_veille_technique.html
-│   │   └── rapport_veille_technique.pdf
-│   │
-│   └── day_2/                   # Livrables Jour 2
-│       ├── protocole_benchmark.html
-│       ├── protocole_benchmark.pdf
-│       ├── grille_evaluation.html
-│       └── grille_evaluation.pdf
-│
-└── src/
-    ├── outils/
-    │   ├── client_ia.py        # Configuration client Hugging Face
-    │   └── chargement_donnees.py
-    │
-    └── strategies/
-        ├── strategie_a_llm_seul.py    # Stratégie A
-        ├── strategie_b_rag.py         # Stratégie B (RAG)
-        └── strategie_c_extractif.py   # Stratégie C (à venir)
+├── src/                # Code source (API, Stratégies, Utils)
+├── data/               # Patrimoine documentaire (Base FAQ)
+├── docs/               # Documentation ET Livrables PDF
+│   └── livrables/      # Vos PDF finaux pour la démo
+├── scripts/            # Outils de maintenance
+├── tests/              # Suite de tests
+├── logs/               # Journaux d'activité
+├── Dockerfile          # Configuration conteneur
+└── docker-compose.yml  # Orchestration
 ```
 
 ---

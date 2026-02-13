@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Techniques - Assistant FAQ Intelligent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f0f3f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        h2 {
+            color: #2980b9;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            color: #16a085;
+        }
+
+        .tech-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .stack-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        code {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Dossier d'Architecture Technique</h1>
+            <p>Assistant FAQ Intelligent - Collectivité Territoriale</p>
+        </header>
+
+        <h2>1. Architecture des SI : Le modèle RAG</h2>
+        <p>Le choix s'est porté sur l'architecture <strong>RAG (Retrieval-Augmented Generation)</strong> pour sa
+            capacité à coupler la puissance d'un LLM avec la rigueur d'une base documentaire locale.</p>
+
+        <div class="tech-card">
+            <h3>Flux de données sémantique :</h3>
+            <ol>
+                <li><strong>Ingestion :</strong> Chargement des fichiers administratifs (JSON/TXT/MD).</li>
+                <li><strong>Normalisation :</strong> Nettoyage via <code>unicodedata</code> et expressions régulières
+                    (Regex) pour éliminer les accents et bruits.</li>
+                <li><strong>Vectorisation :</strong> Conversion du texte en vecteurs (Embeddings) de 384 dimensions.
+                </li>
+                <li><strong>Recherche :</strong> Calcul de <em>similarité cosinus</em> pour trouver les 3 paragraphes
+                    les plus pertinents.</li>
+                <li><strong>Génération :</strong> Injection de ces paragraphes dans le prompt système du LLM.</li>
+            </ol>
+        </div>
+
+        <h2>2. Justification du Stack Logiciel</h2>
+        <div class="stack-list">
+            <div class="tech-card">
+                <h3>Intelligence Artificielle</h3>
+                <p><strong>Embeddings :</strong> <code>all-MiniLM-L6-v2</code><br>
+                    <em>Pourquoi ?</em> Un excellent compromis entre vitesse (latence faible) et compréhension du
+                    français.
+                </p>
+                <p><strong>LLM :</strong> <code>Qwen2.5-7B-Instruct</code><br>
+                    <em>Pourquoi ?</em> Modèle de pointe spécialisé dans le respect des consignes (Instruction
+                    Following) et la synthèse de documents.
+                </p>
+            </div>
+            <div class="tech-card">
+                <h3>Infrastructure Python</h3>
+                <p><strong>Framework :</strong> Python 3.9+<br>
+                    <strong>Bibliothèques clés :</strong><br>
+                    - <code>torch</code> : Pour le calcul tensoriel des embeddings.<br>
+                    - <code>huggingface_hub</code> : Pour l'API d'inférence sécurisée.<br>
+                    - <code>Pytest</code> : Pour la garantie de non-regression.
+                </p>
+            </div>
+        </div>
+
+        <h2>3. Sécurité et Confidentialité</h2>
+        <div class="highlight-box">
+            <strong>Maîtrise de l'Information :</strong>
+            <ul>
+                <li>Les documents de la mairie restent sur le serveur local et sont injectés dynamiquement dans le
+                    prompt.</li>
+                <li>Aucun ré-entraînement (Fine-Tuning) sur des serveurs tiers n'est requis.</li>
+                <li>Gestion des secrets via fichier <code>.env</code> non commité.</li>
+            </ul>
+        </div>
+
+        <h2>4. Stratégie de Qualité (QA)</h2>
+        <table>
+            <tr>
+                <th>Type de Test</th>
+                <th>Composant ciblé</th>
+                <th>Objectif Technique</th>
+            </tr>
+            <tr>
+                <td><strong>Unitaire</strong></td>
+                <td><code>nettoyage.py</code></td>
+                <td>Garantir que <code>input_raw == output_clean</code> malgré les fautes d'orthographe ou majuscules.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Intégration</strong></td>
+                <td><code>chargement_donnees.py</code></td>
+                <td>Vérifier l'IO (Entrée/Sortie) physique entre le système de fichiers et la mémoire vive.</td>
+            </tr>
+            <tr>
+                <td><strong>Système</strong></td>
+                <td><code>strategie_b_rag.py</code></td>
+                <td>Calculer le score de similarité (Hits) pour assurer que les documents choisis sont les bons.</td>
+            </tr>
+        </table>
+
+        <h2>5. Comparatif des Stratégies</h2>
+        <table>
+            <tr>
+                <th>Caractéristique</th>
+                <th>Stratégie A (Basique)</th>
+                <th>Stratégie B (RAG - Choisi)</th>
+                <th>Stratégie C (Extractif)</th>
+            </tr>
+            <tr>
+                <td><strong>Type de réponse</strong></td>
+                <td>Générative (libre)</td>
+                <td>Générative contrôlée</td>
+                <td>Extraction de texte</td>
+            </tr>
+            <tr>
+                <td><strong>Fiabilité (Source)</strong></td>
+                <td>Basse (IA seule)</td>
+                <td>Haute (Documents + IA)</td>
+                <td>Très Haute (Copier-coller)</td>
+            </tr>
+            <tr>
+                <td><strong>Qualité de langue</strong></td>
+                <td>Excellente</td>
+                <td>Excellente (Polie)</td>
+                <td>Moyenne (Brute)</td>
+            </tr>
+            <tr>
+                <td><strong>Complexité</strong></td>
+                <td>Faible</td>
+                <td>Moyenne</td>
+                <td>Elevée (Pipeline QA)</td>
+            </tr>
+            <tr>
+                <td><strong>Verdict</strong></td>
+                <td>❌ Trop de risques d'erreurs</td>
+                <td>✅ <strong>Recommandé</strong></td>
+                <td>❌ Trop rigide pour l'usager</td>
+            </tr>
+        </table>
+
+        <div class="highlight-box">
+            <strong>Pourquoi la B l'emporte sur la C ?</strong><br>
+            La Stratégie C (Extractif) est très précise mais souvent trop "sèche" pour un administré (fragments de
+            phrases). La <strong>Stratégie B (RAG)</strong> permet de reformuler l'information de manière pédagogique et
+            accueillante, tout en restant strictement fidèle à la source.
+        </div>
+
+        <h2>6. Grille d'Évaluation Officielle</h2>
+        <p>Les stratégies ont été notées selon les critères de performance suivants, pondérés selon leur importance pour
+            le service public :</p>
+        <table>
+            <tr>
+                <th>Critère</th>
+                <th>Description</th>
+                <th>Poids</th>
+            </tr>
+            <tr>
+                <td><strong>Exactitude</strong></td>
+                <td>% de réponses correctes sur le golden set</td>
+                <td>30%</td>
+            </tr>
+            <tr>
+                <td><strong>Pertinence</strong></td>
+                <td>Score 0-2 sur la qualité de la réponse (ton, clarté)</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td><strong>Hallucinations</strong></td>
+                <td>% de réponses contenant des informations inventées</td>
+                <td>20%</td>
+            </tr>
+            <tr>
+                <td><strong>Latence</strong></td>
+                <td>Temps de réponse moyen (secondes)</td>
+                <td>15%</td>
+            </tr>
+            <tr>
+                <td><strong>Complexité</strong></td>
+                <td>Difficulté de maintenance et d'évolution future</td>
+                <td>15%</td>
+            </tr>
+        </table>
+        <p><em>Note : La Stratégie B obtient le meilleur score pondéré grâce à sa maîtrise totale des hallucinations
+                (20% du score) et son exactitude élevée.</em></p>
+
+        <h2>7. Performance Attendue</h2>
+        <ul>
+            <li><strong>Temps de réponse :</strong>
+                < 2 secondes par question complexe.</li>
+            <li><strong>Mise à jour :</strong> Temps réel (dès que le fichier est sauvegardé sur le disque).</li>
+            <li><strong>Précision :</strong> Supérieure à 90% sur les questions présentes dans la base FAQ.</li>
+        </ul>
+
+        <div class="footer">
+            <p>Document Technique Interne - Usage réservé</p>
+        </div>
+    </div>
+</body>
+
+</html>

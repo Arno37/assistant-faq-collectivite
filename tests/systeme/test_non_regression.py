@@ -1,47 +1,48 @@
-import sys
-import os
 import pytest
+import os
+import json
+import sys
 
-# Ajout du root du projet au sys.path
+# Ajout du dossier racine au path Python
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from src.benchmark.run_benchmark import charger_golden_set, calculer_score_keywords
 from src.strategies.strategie_b_rag import interroger_rag
 
-def test_performance_rag_golden_set():
+def charger_golden_set():
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data/raw/golden_set.json"))
+    with open(path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    return data['golden_set']
+
+def calculer_score_keywords(reponse, expected_keywords):
+    if not expected_keywords:
+        return 100
+    reponse_lower = reponse.lower()
+    found = sum(1 for kw in expected_keywords if kw.lower() in reponse_lower)
+    return (found / len(expected_keywords)) * 100
+
+@pytest.mark.parametrize("test_case", charger_golden_set())
+def test_non_regression_golden_set(test_case):
     """
-    Test de non-régression : Vérifie que la Stratégie B (RAG) 
-    maintient un niveau de performance acceptable sur le Golden Set.
+    Test de non-régression : 
+    Vérifie que la Stratégie B (RAG) maintient un niveau de performance acceptable
+    sur les questions du Golden Set.
     """
-    print("\n🚀 Lancement du test de non-régression (Stratégie B)...")
+    question = test_case['question']
+    expected_keywords = test_case.get('expected_keywords', [])
     
-    # 1. Charger le Golden Set
-    golden_set = charger_golden_set()
-    
-    # On se concentre sur les questions de type 'direct_match' pour le test de CI
-    # pour éviter de tout faire tourner (gain de temps)
-    questions_test = [q for q in golden_set if q['type'] == 'direct_match']
-    
-    scores = []
-    
-    # 2. Exécuter la stratégie sur ce sous-ensemble
-    for item in questions_test:
-        question = item['question']
-        expected_keywords = item.get('expected_keywords', [])
+    # On n'exécute le test que pour les questions de type 'direct_match' ou 'reformulation'
+    # car les 'hors_sujet' ont un comportement différent.
+    if test_case['type'] in ['direct_match', 'reformulation']:
+        reponse = interroger_rag(question)
+        score = calculer_score_keywords(reponse, expected_keywords)
         
-        try:
-            reponse = interroger_rag(question)
-            score = calculer_score_keywords(reponse, expected_keywords)
-            scores.append(score)
-            print(f"   ✅ Question: {item['id']} | Score: {score}%")
-        except Exception as e:
-            print(f"   ❌ Question: {item['id']} | Erreur: {e}")
-            scores.append(0)
-
-    # 3. Calculer la moyenne
-    score_moyen = sum(scores) / len(scores) if scores else 0
-    print(f"\n📊 Score moyen sur le Golden Set (Direct Match) : {score_moyen:.1f}%")
-
-    # 4. ASSERT : On exige au moins 55% de réussite sur les correspondances directes
-    # (C'est notre seuil de non-régression)
-    assert score_moyen >= 55, f"Régression détectée ! Le score moyen ({score_moyen}%) est inférieur au seuil de 55%."
+        # Seuil de succès : On veut au moins 40% des mots-clés pour valider la non-régression
+        # (C'est un seuil minimal pour éviter les faux négatifs en CI)
+        assert score >= 40, f"Score trop bas ({score}%) pour la question : {question}"
+    
+    elif test_case['type'] == 'hors_sujet':
+        reponse = interroger_rag(question)
+        # Pour un hors-sujet, on vérifie l'aveu d'ignorance poli
+        assert "Bonjour" in reponse
+        assert "domaine de compétence" in reponse or "pas habilité" in reponse

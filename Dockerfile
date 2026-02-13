@@ -25,5 +25,5 @@ USER appuser
 # Exposer le port (pour une future API FastAPI)
 EXPOSE 8000
 
-# Commande par défaut (peut être surchargée)
-CMD ["python", "-m", "src.strategies.strategie_b_rag"]
+# Commande par défaut : lancer le serveur API uvicorn
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
