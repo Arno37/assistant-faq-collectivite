@@ -66,22 +66,22 @@ def interroger_rag(question):
     print(f"\n[DEBUG] Question brute : {question}")
     print(f"[DEBUG] Question nettoyée : {question_propre}")
     
-    # A. Recherche des 3 documents les plus pertinents
+    # A. Recherche des 5 documents les plus pertinents
     query_embedding = _embedder.encode(question_propre, convert_to_tensor=True, show_progress_bar=False)
-    hits = util.semantic_search(query_embedding, _corpus_embeddings, top_k=3)
+    hits = util.semantic_search(query_embedding, _corpus_embeddings, top_k=5)
     
-    # Récupérer les 3 meilleurs documents
+    # Récupérer les 5 meilleurs documents
     top_docs = [_documents_faq[hit['corpus_id']] for hit in hits[0]]
     scores = [hit['score'] for hit in hits[0]]
     
     # --- AJOUT SÉCURITÉ : Seuil de pertinence ---
-    # Si même le meilleur document a un score trop bas (< 0.35), 
+    # Si même le meilleur document a un score trop bas (< 0.30), 
     # on considère que c'est hors sujet sans même interroger l'IA.
-    if scores[0] < 0.35:
+    if scores[0] < 0.30:
         return "Bonjour, ceci sort de mon domaine de compétence. Veuillez renouveler votre demande en lien avec la collectivité territoriale ou les démarches administratives."
     # ---------------------------------------------
 
-    print(f"\n📊 Top 3 documents trouvés :")
+    print(f"\n📊 Top 5 documents trouvés :")
     for i, (doc, score) in enumerate(zip(top_docs, scores), 1):
         print(f"  {i}. Pertinence: {score:.4f} - {doc[:80]}...")
     
@@ -97,7 +97,7 @@ def interroger_rag(question):
         reponse = _client.chat_completion(
             model=MODELE_LLM,
             messages=messages, 
-            max_tokens=150
+            max_tokens=300
         )
         return reponse.choices[0].message.content
     except Exception as e:
