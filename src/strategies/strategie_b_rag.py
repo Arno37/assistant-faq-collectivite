@@ -28,7 +28,7 @@ def _charger_ressources():
         data = json.load(f)
 
     _documents_faq = [
-        f"Question: {item['question']} Réponse: {item['answer']}" 
+        f"Question: {item['question']} Réponse: {item['answer']} Mots-clés: {', '.join(item.get('keywords', []))}" 
         for item in data['faq']
     ]
 
