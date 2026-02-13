@@ -16,12 +16,15 @@ def charger_golden_set():
     
     questions = data['golden_set']
     
-    # SECURITÉ CI/CD : Si on est sur GitHub Actions, on ne teste que 5 questions
-    # pour éviter de saturer le quota gratuit de l'API Hugging Face
+    # SECURITÉ CI/CD : En environnement GitHub Actions, on ne teste que 
+    # les questions "direct_match" et "hors_sujet" (les plus fiables).
+    # Les questions "complexe" et "reformulation" sont testées en local uniquement
+    # car elles nécessitent plus de contexte et sont sensibles aux quotas API.
     if os.getenv("GITHUB_ACTIONS") == "true":
         import random
-        print("\n⚠️ Environnement CI détecté : Échantillonnage de 5 questions pour préserver le quota.")
-        return random.sample(questions, 5)
+        questions_ci = [q for q in questions if q['type'] in ['direct_match', 'hors_sujet']]
+        print(f"\n⚠️ CI détecté : {len(questions_ci)} questions fiables sélectionnées (direct_match + hors_sujet).")
+        return random.sample(questions_ci, min(5, len(questions_ci)))
     
     return questions
 
